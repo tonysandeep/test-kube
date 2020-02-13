@@ -1,0 +1,19 @@
+FROM tomcat:latest
+
+WORKDIR /usr/local/tomcat
+
+COPY SpringMVCHibernateCRUD.war /usr/local/tomcat/webapps/
+
+RUN apt-get update && apt-get -y install --no-install-recommends \
+    gnupg \
+    vim  \
+    curl \
+    wget \
+    git \
+    apt-transport-https \
+    ca-certificates \
+
+# Bootstrap kubectl
+#RUN chmod +x bootstrap.sh && ./bootstrap.sh
+
+ENTRYPOINT ["/bin/bash"]
